@@ -13,14 +13,14 @@ $owner = new User($con, $playlist->getOwner());
 <div class="entityInfo">
   <div class="leftSection">
     <div class="playlistImage">
-      <img src="assets/images/icons/playlist.png">
+      <img src="assets/images/icons/play-button.png">
     </div>
   </div>
   <div class="rightSection">
     <h2><?php echo $playlist->getName(); ?></h2>
     <p> By <?php echo $playlist->getOwner(); ?></p>
     <p><?php echo $playlist->getNumberOfSongs(); ?> songs</p>
-    <button class="button" onclick="deletePlaylist('<?php echo playlistId; ?>')">DELETE PLAYLIST</button>
+    <button class="button" onclick="deletePlaylist('<?php echo $playlist->getId(); ?>')">DELETE PLAYLIST</button>
   </div>
 </div>
 
@@ -34,7 +34,7 @@ $owner = new User($con, $playlist->getOwner());
 
       echo "<li class='trackListRow'>
               <div class='trackCount'>
-              <img class='play' src='assets/images/icons/play-button.png' onclick='setTrack(\"" . $albumSong->getId() . "\", tempPlaylist, true)'>
+              <img class='play' src='assets/images/icons/play-button.png' onclick='setTrack(\"" . $playlistSong->getId() . "\", tempPlaylist, true)'>
                 <span class='trackNumber'>$i</span>
               </div>
               <div class='trackInfo'>
