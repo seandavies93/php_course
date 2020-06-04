@@ -21,6 +21,23 @@ $(window).scroll(function() {
   hideOptionsMenu();
 });
 
+$(document).on("change", "select.playlist", function() {
+  var playlistId = $(this).val();
+  var songId = $(this).prev(".songId").val();
+  var select = $(this);
+  $.post("includes/handlers/ajax/addToPlaylist.php", { playlistId: playlistId, songId: songId })
+  .done(function(error) {
+
+    if(error != null) {
+      alert(error);
+      return;
+    }
+
+    hideOptionsMenu();
+    select.val("");
+  });
+});
+
 function openPage(url) {
   if(timer != null) {
     clearTimeout(timer);
@@ -69,8 +86,10 @@ function hideOptionsMenu() {
 }
 
 function showOptionsMenu(button) {
+  var songId = $(button).prevAll(".songId").val();
   var menu = $(".optionsMenu");
   var menuWidth = menu.width();
+  menu.find(".songId").val(songId);
   var scrollTop = $(window).scrollTop(); // distance from top of window to top of document
   var elementOffset = $(button).offset().top; //distance from top of document
 

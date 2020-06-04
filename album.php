@@ -42,6 +42,7 @@ $artistId = $artist->getId();
               </div>
 
               <div class='trackOptions'>
+              <input type='hidden' class='songId' value='" . $albumSong->getId() . "'
                 <p class='optionsButton'>...</p>
               </div>
 
