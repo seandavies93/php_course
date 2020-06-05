@@ -43,6 +43,7 @@ $owner = new User($con, $playlist->getOwner());
               </div>
 
               <div class='trackOptions'>
+              <input type='hidden' class='songId' value='" . $playlistSong->getId() . "'
                 <p class='optionsButton'>...</p>
               </div>
 
@@ -61,5 +62,11 @@ $owner = new User($con, $playlist->getOwner());
     </script>
   </ul>
 </div>
+
+<nav class="optionsMenu">
+  <input type="hidden" class="songId">
+  <?php echo Playlist::getPlaylistsDropdown($con, $userLoggedIn->getUsername()); ?>
+  <div class="item" onclick="removeFromPlaylist(this, '<?php echo $playlistId; ?>')">Remove from Playlist</div>
+</nav>
 
 <?php include("includes/footer.php"); ?>
