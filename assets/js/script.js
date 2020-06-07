@@ -25,7 +25,10 @@ $(document).on("change", "select.playlist", function() {
   var playlistId = $(this).val();
   var songId = $(this).prev(".songId").val();
   var select = $(this);
-  $.post("includes/handlers/ajax/addToPlaylist.php", { playlistId: playlistId, songId: songId })
+  $.post("includes/handlers/ajax/addToPlaylist.php", {
+    playlistId: playlistId,
+    songId: songId
+  })
   .done(function(error) {
 
     if(error != null) {
@@ -41,7 +44,10 @@ $(document).on("change", "select.playlist", function() {
 function updateEmail(emailClass) {
   var emailValue = $("." + emailClass).val();
 
-  $.post("includes/handlers/ajax/updateEmail.php", { email: emailValue, username: userLoggedIn })
+  $.post("includes/handlers/ajax/updateEmail.php", {
+    email: emailValue,
+    username: userLoggedIn
+  })
   .done(function(response) {
     $("." + emailClass).nextUntil(".message").text(response);
   });
@@ -52,7 +58,10 @@ function updatePassword(oldPasswordClass, newPasswordClass1, newPasswordClass2) 
   var newPassword1 = $("." + newPasswordClass1).val();
   var newPassword2 = $("." + newPasswordClass2).val();
 
-  $.post("includes/handlers/ajax/updatePassword.php", { oldPassword: oldPassword, newPassword1: newPassword1, newPassword2: newPassword2 })
+  $.post("includes/handlers/ajax/updatePassword.php", {
+    oldPassword: oldPassword,
+    newPassword1: newPassword1,
+    newPassword2: newPassword2 })
   .done(function(response) {
     $("." + oldPasswordClass).nextUntil(".message").text(response);
   });
@@ -81,7 +90,10 @@ function removeFromPlaylist(element, playlistId) {
   var songId = $(button).prevAll(".songId").val();
 
 
-  $.post("includes/handlers/ajax/removeFromPlaylist.php", { playlistId: playlistId, songId: songId }).done(function(error){
+  $.post("includes/handlers/ajax/removeFromPlaylist.php", {
+    playlistId: playlistId,
+    songId: songId
+  }).done(function(error){
     if(error != null) {
       alert(error);
       return;
@@ -95,7 +107,10 @@ function createPlaylist() {
   var popup = prompt("Please enter the name of your playlist");
   if(popup != null) {
 
-    $.post("includes/handlers/ajax/createPlaylist.php", { name: popup, username: userLoggedIn }).done(function(error){
+    $.post("includes/handlers/ajax/createPlaylist.php", {
+      name: popup,
+      username: userLoggedIn
+    }).done(function(error){
       if(error != null) {
         alert(error);
         return;
@@ -108,7 +123,9 @@ function deletePlaylist(playlistId) {
   var prompt = confirm("Are you sure you want to delete this playlist?");
 
   if(prompt) {
-    $.post("includes/handlers/ajax/deletePlaylist.php", { playlistId: playlistId }).done(function(error){
+    $.post("includes/handlers/ajax/deletePlaylist.php", {
+      playlistId: playlistId
+    }).done(function(error){
       if(error != null) {
         alert(error);
         return;
