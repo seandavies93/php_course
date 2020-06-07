@@ -7,9 +7,9 @@ include("includes/classes/Playlist.php");
 include("includes/classes/User.php");
 
 if(isset($_SESSION['userLoggedIn'])) {
-  $userLoggedIn = $_SESSION['userLoggedIn'];
-
-  echo "<script>userLoggedIn = '$userLoggedIn'</script>";
+  $userLoggedIn = new User($con, $_SESSION['userLoggedIn');
+  $username = $userLoggedIn->getUsername();
+  echo "<script>userLoggedIn = '$username'</script>";
 }
 
 ?>
